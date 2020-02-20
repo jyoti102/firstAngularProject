@@ -8,10 +8,10 @@
         <form [formGroup]="jyoti">
             <input formControlName="email" type="email" id="email" name="email" />
             <span
-                *ngIf="jyoti.get('email').hasError('maxlength') || jyoti.get('email').hasError('minlength') || jyoti.get('email').hasError('email') || jyoti.get('email').hasError('required') ">
+                *ngIf="jyoti.get('email').hasError('maxlength') || jyoti.get('email').hasError('minlength') || jyoti.get('email').hasError('pattern') || jyoti.get('email').hasError('required') ">
                 Please enter a valid email id.</span>
             <input formControlName="password" type="password" id="password" name="password" />
-            <span *ngIf="jyoti.get('password').hasError('pattern')">Please enter valid password</span> 
+            <span *ngIf="jyoti.get('password').hasError('pattern') || jyoti.get('password').hasError('minlength')">Please enter valid password</span> 
             <input type="submit" (click)="validateForm()" id="submit" name="submit" />
         </form>
     </div>

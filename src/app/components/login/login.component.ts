@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,15 +11,15 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
   jyoti: FormGroup;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     this.jyoti = new FormGroup({
       'email': new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(10),
-        Validators.email
+        Validators.maxLength(20),
+        Validators.pattern('[A-Za-z]+@[A-Za-z]+[\.][A-Za-z]{3,4}') //("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
       ]),
       'password': new FormControl('',[
         Validators.required,
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
 
   validateForm() {
     console.log(this.jyoti.valid)
+    if(this.jyoti.valid)
+    this.router.navigateByUrl('/home')
   }
 
 }
